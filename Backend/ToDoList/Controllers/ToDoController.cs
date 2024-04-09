@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using ToDoList.Models;
 using ToDoList.Services.Interfaces;
 
@@ -6,6 +8,7 @@ namespace ToDoList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ToDoController : ControllerBase
     {
         readonly IToDoService toDoService;
@@ -15,12 +18,15 @@ namespace ToDoList.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         public IActionResult GetToDoList() { 
             var result = toDoService.GetAllToDoList();
             return Ok(result);
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+
         public IActionResult GetToDoList([FromBody] ToDoDto toDo)
         {
             var result = toDoService.CreateToDo(toDo);
@@ -28,6 +34,8 @@ namespace ToDoList.Controllers
         }
 
         [HttpGet(":id")]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+
         public IActionResult GetToDoList(int id)
         {
             var result = toDoService.GetToDoById(id);
@@ -35,6 +43,8 @@ namespace ToDoList.Controllers
         }
 
         [HttpPut(":id")]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+
         public IActionResult UpdateToDo([FromBody] ToDoDto todo, int id)
         {
             var result = toDoService.UpdateToDo(id, todo);
@@ -42,6 +52,8 @@ namespace ToDoList.Controllers
         }
 
         [HttpDelete(":id")]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+
         public IActionResult DeleteToDo(int id)
         {
             var result = toDoService.DeleteToDo(id);
