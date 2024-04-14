@@ -5,18 +5,37 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoPageComponent } from './pages/todo-page/todo-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { TodoComponentsModule } from './components/todoComponent/todo.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TodoAddComponent } from './components/todoComponent/todo-add/todo-add.component';
+import { TodoDeleteComponent } from './components/todoComponent/todo-delete/todo-delete.component';
+import { TodoItemComponent } from './components/todoComponent/todo-item/todo-item.component';
+import { TodoUpdateComponent } from './components/todoComponent/todo-update/todo-update.component';
+import { LoginFormComponent } from './components/loginComponent/login-form/login-form.component';
+import { LoginInformationCardComponent } from './components/loginComponent/login-information-card/login-information-card.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TodoComponent } from './components/todoComponent/todo/todo.component';
+import { NotfoundPageComponent } from './pages/notfound-page/notfound-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    TodoAddComponent,
+    TodoDeleteComponent,
+    TodoItemComponent,
+    TodoUpdateComponent,
+    LoginFormComponent,
+    LoginInformationCardComponent,
+    TodoComponent,
+    NotfoundPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TodoComponentsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

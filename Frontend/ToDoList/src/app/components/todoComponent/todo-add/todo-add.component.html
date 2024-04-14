@@ -1,1 +1,30 @@
-<p>todo-add works!</p>
+<div class="modal-header">
+  <h2 class="modal-title fw-bold text-primary fs-5" id="addToDo">Add to-do</h2>
+</div>
+<form [formGroup]="form" #toDoForm="ngForm">
+  <div class="modal-body pt-0">
+    <label for="titleInput" class="form-label">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="title"
+      placeholder="To-Do's title"
+      [class.is-invalid]="toDoForm.submitted && form.get('title')?.invalid"
+    />
+    <div class="invalid-feedback">To-Do's title is requiered</div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      #closeAddTodoDialog
+      data-bs-dismiss="modal"
+      (click)="onResetForm(toDoForm)"
+    >
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+      Create
+    </button>
+  </div>
+</form>

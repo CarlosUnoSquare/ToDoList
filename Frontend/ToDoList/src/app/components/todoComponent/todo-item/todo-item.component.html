@@ -1,1 +1,28 @@
-<p>todo-item works!</p>
+<div class="container-todo-item card-todo row">
+  <div
+    class="px-3 py-2 border-1 col"
+    (click)="emitTodo(todo)"
+    data-bs-toggle="modal"
+    data-bs-target="#updateTodoDialog"
+  >
+    <h6 class="pb-0 mb-0 text-black fw-semibold">{{ todo.title }}</h6>
+    <span
+      class="status-tag"
+      [ngClass]="{
+        'status-todo': todo.status == 0,
+        'status-onGoing': todo.status == 1,
+        'status-completed': todo.status == 2
+      }"
+    >
+      {{ this.getStatus(todo.status) }}
+    </span>
+  </div>
+  <div
+    class="col-2 h-auto delete-section d-flex"
+    (click)="emitTodo(todo)"
+    data-bs-toggle="modal"
+    data-bs-target="#deleteTodoDialog"
+  >
+    <i class="bi bi-trash m-auto delete-icon"></i>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="toDo-title">
+    <div class="d-flex pt-5 pb-2">
+      <h3 class="text-primary fw-bold">To - Do List</h3>
+      <button
+        type="button"
+        class="ms-4 btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#addTodoDialog"
+      >
+        Create To-Do
+      </button>
+    </div>
+    <h4 class="text-secondary">
+      Manage and review all pending tasks that you have
+    </h4>
+  </div>
+
+  <div class="row shadow-lg bg-white mt-5 p-4">
+    <div class="col bg-white toDo-column">
+      <h5 class="text-primary fw-bold">Todo</h5>
+      <div *ngFor="let todo of todoPendingList">
+        <app-todo-item [todo]="todo" (emitTodoEvent)="updateTodo($event)">
+        </app-todo-item>
+      </div>
+    </div>
+    <div class="col bg-white toDo-column">
+      <h5 class="text-primary fw-bold">OnGoing</h5>
+      <div *ngFor="let todo of todoOnGoingList">
+        <app-todo-item [todo]="todo" (emitTodoEvent)="updateTodo($event)">
+        </app-todo-item>
+      </div>
+    </div>
+    <div class="col bg-white toDo-column">
+      <h5 class="text-primary fw-bold">Completed</h5>
+      <div *ngFor="let todo of todoCompletedList">
+        <app-todo-item [todo]="todo" (emitTodoEvent)="updateTodo($event)">
+        </app-todo-item>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add To-Do -->
+<div
+  class="modal fade"
+  id="addTodoDialog"
+  tabindex="-1"
+  aria-labelledby="addTodoDialogLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <app-todo-add></app-todo-add>
+    </div>
+  </div>
+</div>
+
+<!-- Update To-Do -->
+<div
+  class="modal fade"
+  id="updateTodoDialog"
+  tabindex="-1"
+  aria-labelledby="updateTodoDialogLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <app-todo-update [todo]="todoEmitted"></app-todo-update>
+    </div>
+  </div>
+</div>
+
+<!-- Delete To-Do -->
+<div
+  class="modal fade"
+  id="deleteTodoDialog"
+  tabindex="-1"
+  aria-labelledby="deleteTodoDialogLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <app-todo-delete [todo]="todoEmitted"></app-todo-delete>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.status-tag {
+  font-size: 12px;
+  color: var(--color-white);
+  border-radius: 8px;
+  padding: 2px 8px;
+  width: auto;
+}
+
+.card-todo:hover {
+  cursor: pointer;
+  background-color: var(--color-gray);
+  transition: 0.2s;
+
+  .delete-section {
+    background-color: var(--color-red);
+    transition: 0.2s;
+  }
+
+  .delete-icon {
+    display: unset;
+    transition: 0.2s;
+    color: var(--color-white);
+  }
+}
+
+.card-todo {
+  border: solid var(--color-gray) 1px;
+}
+
+.status-todo {
+  background-color: var(--color-red);
+}
+
+.status-onGoing {
+  background-color: var(--color-yellow);
+}
+
+.status-completed {
+  background-color: var(--color-green);
+}
+
+.delete-icon {
+  display: none;
+}

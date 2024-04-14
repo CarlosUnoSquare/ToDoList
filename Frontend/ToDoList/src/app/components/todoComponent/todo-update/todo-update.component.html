@@ -1,1 +1,42 @@
-<p>todo-update works!</p>
+<div class="modal-header">
+  <h2 class="modal-title fw-bold text-primary fs-5" id="updateToDo">
+    Update to-do
+  </h2>
+</div>
+<form [formGroup]="form" #toDoForm="ngForm">
+  <div class="modal-body pt-0">
+    <label for="titleInput" class="form-label">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="title"
+      placeholder="To-Do's title"
+      [class.is-invalid]="toDoForm.submitted && form.get('title')?.invalid"
+    />
+    <div class="invalid-feedback">To-Do's title is requiered</div>
+    <label for="statusInput" class="form-label">Status</label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      formControlName="status"
+    >
+      <option value="0">To-Do</option>
+      <option value="1">On Going</option>
+      <option value="2">Completed</option>
+    </select>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      #closeUpdateToDoDialog
+      data-bs-dismiss="modal"
+      (click)="onResetForm(toDoForm)"
+    >
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+      Save
+    </button>
+  </div>
+</form>
