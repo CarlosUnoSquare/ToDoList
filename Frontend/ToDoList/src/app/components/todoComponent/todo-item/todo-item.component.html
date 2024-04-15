@@ -5,8 +5,9 @@
     data-bs-toggle="modal"
     data-bs-target="#updateTodoDialog"
   >
-    <h6 class="pb-0 mb-0 text-black fw-semibold">{{ todo.title }}</h6>
+    <h6 id="todo-title" class="pb-0 mb-0 text-black fw-semibold">{{ todo.title }}</h6>
     <span
+      id="todo-status"
       class="status-tag"
       [ngClass]="{
         'status-todo': todo.status == 0,
@@ -18,6 +19,7 @@
     </span>
   </div>
   <div
+    id="btnShowDeleteTodo"
     class="col-2 h-auto delete-section d-flex"
     (click)="emitTodo(todo)"
     data-bs-toggle="modal"

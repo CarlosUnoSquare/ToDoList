@@ -5,13 +5,14 @@
   <div class="modal-body pt-0">
     <label for="titleInput" class="form-label">Title</label>
     <input
+      id="titleInput"
       type="text"
       class="form-control"
       formControlName="title"
       placeholder="To-Do's title"
       [class.is-invalid]="toDoForm.submitted && form.get('title')?.invalid"
     />
-    <div class="invalid-feedback">To-Do's title is requiered</div>
+    <div id="titleInputError" class="invalid-feedback">To-Do's title is requiered</div>
   </div>
   <div class="modal-footer">
     <button
@@ -23,7 +24,7 @@
     >
       Cancel
     </button>
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+    <button id="btnCreateToDoForm" type="submit" class="btn btn-primary" (click)="onSubmit()">
       Create
     </button>
   </div>

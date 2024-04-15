@@ -5,6 +5,7 @@
   <div class="mb-3">
     <label for="userNameInput" class="form-label">User name</label>
     <input
+      id="userNameInput"
       type="text"
       class="form-control"
       formControlName="userName"
@@ -16,6 +17,7 @@
   <div class="mb-3">
     <label for="passwordInput" class="form-label">Password</label>
     <input
+      id="passwordInput"
       type="password"
       class="form-control"
       formControlName="password"
@@ -33,5 +35,5 @@
     <i class="bi bi-exclamation-triangle"></i>
     <p class="m-1 mb-0">{{ error.message }}.</p>
   </div>
-  <button class="mt-2 btn btn-primary float-end">Continue</button>
+  <button id="btnLoginSubmit" class="mt-2 btn btn-primary float-end">Continue</button>
 </form>

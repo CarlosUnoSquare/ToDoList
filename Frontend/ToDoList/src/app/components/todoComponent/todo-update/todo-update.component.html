@@ -7,6 +7,7 @@
   <div class="modal-body pt-0">
     <label for="titleInput" class="form-label">Title</label>
     <input
+      id="titleInput"
       type="text"
       class="form-control"
       formControlName="title"
@@ -16,6 +17,7 @@
     <div class="invalid-feedback">To-Do's title is requiered</div>
     <label for="statusInput" class="form-label">Status</label>
     <select
+      id="statusInput"
       class="form-select"
       aria-label="Default select example"
       formControlName="status"
@@ -35,7 +37,7 @@
     >
       Cancel
     </button>
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+    <button id="btnUpdateToDoForm" type="submit" class="btn btn-primary" (click)="onSubmit()">
       Save
     </button>
   </div>

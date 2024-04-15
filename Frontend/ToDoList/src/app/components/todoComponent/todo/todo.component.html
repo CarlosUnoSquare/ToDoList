@@ -3,6 +3,7 @@
     <div class="d-flex pt-5 pb-2">
       <h3 class="text-primary fw-bold">To - Do List</h3>
       <button
+        id="btnCreateToDo"
         type="button"
         class="ms-4 btn btn-primary"
         data-bs-toggle="modal"
@@ -17,23 +18,23 @@
   </div>
 
   <div class="row shadow-lg bg-white mt-5 p-4">
-    <div class="col bg-white toDo-column">
+    <div id="todoPendingList" class="col bg-white toDo-column">
       <h5 class="text-primary fw-bold">Todo</h5>
-      <div *ngFor="let todo of todoPendingList">
+      <div id="{{ 'todo-' + todo.id }}" class="pending-todo" *ngFor="let todo of todoPendingList">
         <app-todo-item [todo]="todo" (emitTodoEvent)="updateTodo($event)">
         </app-todo-item>
       </div>
     </div>
-    <div class="col bg-white toDo-column">
+    <div id="todoOnGoingList" class="col bg-white toDo-column">
       <h5 class="text-primary fw-bold">In Progress</h5>
-      <div *ngFor="let todo of todoOnGoingList">
+      <div id="{{ 'todo-' + todo.id }}" class="onGoing-todo" *ngFor="let todo of todoOnGoingList">
         <app-todo-item [todo]="todo" (emitTodoEvent)="updateTodo($event)">
         </app-todo-item>
       </div>
     </div>
-    <div class="col bg-white toDo-column">
+    <div id="todoCompletedList" class="col bg-white toDo-column">
       <h5 class="text-primary fw-bold">Completed</h5>
-      <div *ngFor="let todo of todoCompletedList">
+      <div id="{{ 'todo-' + todo.id }}" class="completed-todo" *ngFor="let todo of todoCompletedList">
         <app-todo-item [todo]="todo" (emitTodoEvent)="updateTodo($event)">
         </app-todo-item>
       </div>
