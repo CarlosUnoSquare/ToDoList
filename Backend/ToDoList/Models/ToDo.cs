@@ -7,7 +7,7 @@ namespace ToDoList.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public bool IsDone { get; set; } = false;
+        public ToDoStatus Status { get; set; } = 0;
         public bool IsDeleted { get; set; } = false;
     }
 }

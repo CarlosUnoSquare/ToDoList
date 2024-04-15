@@ -6,12 +6,7 @@ using ToDoList.Services;
 using ToDoList.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
 //Jwt configuration
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
@@ -65,7 +60,10 @@ builder.Services.AddSwaggerGen(opt => {
 
 
 var app = builder.Build();
-
+app.UseCors(options =>
+       options.WithOrigins("*")
+       .AllowAnyMethod()
+       .AllowAnyHeader());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

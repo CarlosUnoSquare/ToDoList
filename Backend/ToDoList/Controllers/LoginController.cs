@@ -1,17 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
+﻿using InterviewSystem.API.ResultHandler;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using System.Net;
-using System.Text;
 using ToDoList.Models.DTOs;
 using ToDoList.Services.Interfaces;
-
 namespace ToDoList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class LoginController : ApiResultControllerBase
     {
         readonly ILoginServices loginServices;
         public LoginController(ILoginServices loginServices)
@@ -25,10 +21,10 @@ namespace ToDoList.Controllers
         public IActionResult Post([FromBody] LoginDto loginUser)
         {
             var tokenResult = loginServices.Login(loginUser);
-            if (tokenResult == string.Empty) { 
-                return BadRequest("UserName or Password are not correct");
+            if (tokenResult == string.Empty) {
+                return APIBadRequest("UserName or Password are incorrect");
             }
-            return Ok(tokenResult);
+            return ApiOk(tokenResult);
         }
     }
 }

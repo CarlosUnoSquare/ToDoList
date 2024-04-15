@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using InterviewSystem.API.ResultHandler;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using ToDoList.Models;
@@ -9,7 +10,7 @@ namespace ToDoList.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class ToDoController : ControllerBase
+    public class ToDoController : ApiResultControllerBase
     {
         readonly IToDoService toDoService;
         public ToDoController(IToDoService toDoService)
@@ -21,7 +22,7 @@ namespace ToDoList.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         public IActionResult GetToDoList() { 
             var result = toDoService.GetAllToDoList();
-            return Ok(result);
+            return ApiOk(result);
         }
 
         [HttpPost]
@@ -30,34 +31,34 @@ namespace ToDoList.Controllers
         public IActionResult GetToDoList([FromBody] ToDoDto toDo)
         {
             var result = toDoService.CreateToDo(toDo);
-            return Ok(result);
+            return ApiOk(result);
         }
 
-        [HttpGet(":id")]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
 
         public IActionResult GetToDoList(int id)
         {
             var result = toDoService.GetToDoById(id);
-            return Ok(result);
+            return ApiOk(result);
         }
 
-        [HttpPut(":id")]
+        [HttpPut("{id:int}")]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
 
         public IActionResult UpdateToDo([FromBody] ToDoDto todo, int id)
         {
             var result = toDoService.UpdateToDo(id, todo);
-            return Ok(result);
+            return ApiOk(result);
         }
 
-        [HttpDelete(":id")]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
 
         public IActionResult DeleteToDo(int id)
         {
             var result = toDoService.DeleteToDo(id);
-            return Ok(result);
+            return ApiOk(result);
         }
     }
 }

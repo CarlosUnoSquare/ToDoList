@@ -11,10 +11,27 @@ namespace ToDoList.Services
             _toDoList.Add(new ToDo()
             {
                 Id = 1,
-                IsDone = false,
-                Title = "First Todo",
+                Status = ToDoStatus.ToDo,
+                Title = "Clean the house",
                 IsDeleted = false
-            });    
+            });
+
+            _toDoList.Add(new ToDo()
+            {
+                Id = 2,
+                Status = ToDoStatus.OnGoing,
+                Title = "Prepare the dinner",
+                IsDeleted = false
+            });
+
+
+            _toDoList.Add(new ToDo()
+            {
+                Id = 3,
+                Status = ToDoStatus.Completed,
+                Title = "Do the homework",
+                IsDeleted = false
+            });
         }
         public ToDo CreateToDo(ToDoDto toDo)
         {
@@ -50,7 +67,7 @@ namespace ToDoList.Services
         {
             var toDoFind = _toDoList.FirstOrDefault(x => x.Id == id);
             toDoFind.Title = toDo.Title;
-            toDoFind.IsDone = toDo.IsDone;
+            toDoFind.Status = toDo.Status;
             return toDoFind;
         }
     }
