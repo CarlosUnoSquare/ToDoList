@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { TodoService } from '../../../services/todo.service';
 import { ToDoModel } from '../../../models/toDo.model.s';
+import { Store } from '@ngrx/store';
+import { UPDATE_TODO } from '../../../store/actions/todo.actions';
 
 @Component({
   selector: 'app-todo-update',
@@ -20,7 +22,8 @@ export class TodoUpdateComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private todoServices: TodoService
+    private todoServices: TodoService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +47,7 @@ export class TodoUpdateComponent {
       this.todoServices
         .updateTodos(this.todo.id, todoUpdated)
         .subscribe((res) => {
+          this.store.dispatch(UPDATE_TODO({todo: res.data}));
           this.closeModal();
         });
     }

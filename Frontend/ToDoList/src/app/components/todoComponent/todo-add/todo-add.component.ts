@@ -9,6 +9,8 @@ import {
 import { ToDoModel } from '../../../models/toDo.model.s';
 import { timeout } from 'rxjs';
 import { TodoService } from '../../../services/todo.service';
+import { Store } from '@ngrx/store';
+import { ADD_TODO } from '../../../store/actions/todo.actions';
 
 @Component({
   selector: 'app-todo-add',
@@ -22,7 +24,8 @@ export class TodoAddComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private todoServices: TodoService
+    private todoServices: TodoService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +43,7 @@ export class TodoAddComponent implements OnInit {
     if (this.form.valid) {
       this.todo = { ...this.form.value };
       this.todoServices.postTodos(this.todo).subscribe((res) => {
+        this.store.dispatch(ADD_TODO({ todo: res.data }));
         this.closeModal();
       });
     }

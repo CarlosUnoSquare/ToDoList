@@ -15,6 +15,10 @@ import { LoginInformationCardComponent } from './components/loginComponent/login
 import { HttpClientModule } from '@angular/common/http';
 import { TodoComponent } from './components/todoComponent/todo/todo.component';
 import { NotfoundPageComponent } from './pages/notfound-page/notfound-page.component';
+import { provideStore } from '@ngrx/store';
+import { appEffects, appStore } from './store/store';
+import { TodoService } from './services/todo.service';
+import { provideEffects } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { NotfoundPageComponent } from './pages/notfound-page/notfound-page.compo
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideStore(appStore),
+    provideEffects(appEffects),
+    TodoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

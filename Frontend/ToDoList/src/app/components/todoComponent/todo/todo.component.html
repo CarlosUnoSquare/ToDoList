@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="col bg-white toDo-column">
-      <h5 class="text-primary fw-bold">OnGoing</h5>
+      <h5 class="text-primary fw-bold">In Progress</h5>
       <div *ngFor="let todo of todoOnGoingList">
         <app-todo-item [todo]="todo" (emitTodoEvent)="updateTodo($event)">
         </app-todo-item>
